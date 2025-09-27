@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block content %}
+    <p>Bem-vindo, {{ current_user.email if current_user.is_authenticated else 'Usuário' }}! </p>
+    <a href="{{ url_for('auth.logout') }}">Sair</a>
+{% endblock %}
