@@ -1,10 +1,12 @@
-<!--{% extends "base.html" %}-->
-
-{% block content %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Home - SELOEDU</title>
+</head>
+<body>
     <h2>Bem-vindo ao SELOEDU</h2>
     <p>Esta é a página inicial da aplicação.</p>
     <p><a href="{{ url_for('auth.login') }}">Entrar</a></p>
-    <p>Logado? {{ 'Sim' if current_user.is_authenticated else 'Não' }}</p>
-    <p>User atual: {{ current_user.get_id() if current_user.is_authenticated else 'Nenhum' }}</p>
-
-{%endblock%}
+</body>
+</html>

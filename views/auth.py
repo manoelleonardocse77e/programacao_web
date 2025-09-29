@@ -19,3 +19,9 @@ def login():
         else:
             flash("Credenciais inválidas.", "danger")
     return render_template("auth/login.html")
+
+@login_required
+def logout():
+    logout_user()
+    flash("Sessão encerrada.", "info")
+    return redirect(url_for("auth.login"))
