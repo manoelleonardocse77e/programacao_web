@@ -3,6 +3,10 @@ from flask_login import login_required, current_user
 from models.user import User
 from extensions import db
 
+@login_required
+def index():
+    usuarios = User.query.all()
+    return render_template("users/index.html", usuarios=usuarios)
 
 
 @login_required
@@ -11,7 +15,7 @@ def create():
         nome = request.form.get("nome")
         email = request.form.get("email")
         role = request.form.get("role", "aluno")
-        senha = request.form.get("senha")
+        senha = request.form.get("password")
         
         if current_user.role != 'coordenador' and role == 'coordenador':
             flash("Coordenador nao pode criar outro coordenador.", "danger")
