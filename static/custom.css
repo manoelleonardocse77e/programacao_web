@@ -1,0 +1,79 @@
+/* Layout principal: sidebar à esquerda e conteúdo à direita */
+.layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  min-height: 100vh;
+}
+
+/* Sidebar fixa */
+aside {
+  background-color: #f3f4f6;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; 
+  border-right: 1px solid #ddd;
+}
+
+/* Logo / título */
+aside h2 {
+  margin-bottom: 5px;
+  text-align: left;
+  color: #4f00ff;
+}
+
+/* Navegação principal */
+aside nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+aside nav li {
+  margin: 10px 0;
+}
+
+aside nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+aside nav a:hover {
+  color: #4f00ff;
+}
+
+/* Bloco inferior (perfil) */
+.sidebar-footer {
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+  font-size: 14px;
+  margin-top: auto;
+}
+
+.sidebar-footer p {
+  margin: 2px 0;
+}
+
+.sidebar-footer ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+.sidebar-footer li {
+  margin: 6px 0;
+}
+
+.sidebar-footer a {
+  text-decoration: none;
+  color: #4f00ff;
+}
+
+.sidebar-footer a:hover {
+  text-decoration: underline;
+}
+
+main {
+  padding: 20px;
+}

@@ -6,20 +6,34 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='custom.css') }}">
 </head>
 <body>
-    <header>
-        {% if current_user.is_authenticated %}
-            <nav>
-                <a href="{{ url_for('dashboard') }}">Dashboard</a> |
-                <a href="{{ url_for('users.index') }}">Usuários</a> |
-                <a href="{{ url_for('auth.logout') }}">Sair</a>
-            </nav>
-        {% endif %}
-    </header>
+    <div class="layout">
+        <aside>
+            <h2>SELOEDU</h2>
 
-    <main>
-        {% block messages %}{% endblock %}
-        {% block content %}{% endblock %}
-    </main> 
+            {% if current_user.is_authenticated %}
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+                    <li><a href="{{ url_for('users.index') }}">Usuários</a></li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <ul>
+                    <li><a href="{{ url_for('users.profile') }}">Perfil</a></li>
+                   
+                    <li><a href="{{ url_for('auth.logout') }}">Sair</a></li>
+                </ul>
+            </div>
+            {% endif %}
+        </aside>
+
+        <!-- CONTEÚDO PRINCIPAL -->
+        <main>
+            {% block messages %}{% endblock %}
+            {% block content %}{% endblock %}
+        </main>
+    </div>
 
     <footer>
         <p>SELOEDU © 2025</p>
