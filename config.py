@@ -9,3 +9,10 @@ class Config:
     MAX_CONTENT_LENGTH = 4 * 1024 * 1024 
     ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
     THUMBMAIL_SIZE = (200,200)
+
+    MAIL_SERVERS = "localhost"
+    MAIL_PORT = 1025
+    MAIL_USE_TLS = False
+    MAIL_USERNAME = ""
+    MAIL_PASSWORD = ""
+    MAIL_DEFAULT_SENDER="manoleo@seloedu.com.br"
