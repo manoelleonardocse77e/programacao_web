@@ -3,6 +3,7 @@ from extensions import db, login_manager
 from models.user import User
 from routes.auth import auth_bp
 from routes.users import users_bp
+from routes.treinamento import treinamento_bp
 
 app = Flask(__name__)
 app.config.from_object("config.Config")
@@ -33,6 +34,7 @@ with app.app_context():
 
 app.register_blueprint(auth_bp)
 app.register_blueprint(users_bp)
+app.register_blueprint(treinamento_bp)
 
 if __name__ == "__main__":
     app.run(debug=True)
