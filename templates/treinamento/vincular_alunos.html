@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Vincular alunos à Turma{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='vincular_alunos.css') }}">
+
+<div class="page-container">
+
+    <h1>Vincular alunos à Turma</h1>
+    <p class="subtitle">Marque os alunos que devem participar desta turma.</p>
+
+    <!-- INFO DO TREINAMENTO -->
+   <div class="info-box">
+        <strong>Treinamento:</strong> {{ turma.treinamento.nome }}<br>
+        <strong>Turma:</strong> {{ turma.id }} • {{ turma.matriculados }} / {{ turma.vagas }} alunos<br>
+
+        <strong>Início:</strong>
+        {% if turma.data_inicio %}
+            {{ turma.data_inicio.strftime('%d/%m/%Y') }}
+        {% else %}
+            <em>Data não definida</em>
+        {% endif %}
+    </div>
+
+
+    <form method="POST">
+
+        <div class="container">
+
+            {% for aluno in alunos %}
+            <div class="aluno-row">
+                <div class="aluno-info">
+                    <span class="aluno-nome">{{ aluno.nome }}</span>
+                    <span class="aluno-email">{{ aluno.email }}</span>
+                </div>
+
+                <!-- Checkbox REGRAS:
+                     - Se o aluno já está vinculado → checked + disabled
+                     - Caso contrário → checkbox normal -->
+                  <input type="checkbox"
+                      class="checkbox"
+                      name="alunos_ids"
+                      value="{{ aluno.id }}"
+                      {% if aluno.id in alunos_vinculados %}checked{% endif %}>
+            </div>
+            {% endfor %}
+
+            <div class="actions">
+                <button class="btn-primary" type="submit">Salvar vinculação</button>
+                <a href="{{ url_for('treinamento.listar_turmas', treinamento_id=turma.treinamento_id) }}" class="btn-secondary">Voltar</a>
+            </div>
+
+        </div>
+    </form>
+
+</div>
+
+{% endblock %}

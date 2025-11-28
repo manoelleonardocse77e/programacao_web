@@ -15,3 +15,7 @@ class Treinamento(db.Model):
 
     def __repr__(self):
         return f"<Treinamento {self.nome}>"
+
+    @property
+    def titulo(self):
+        return self.nome

@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% block title %}Turmas do Treinamento{% endblock %}
+
+{% block content %}
+<style>
+    .info-box {
+        background: #eef2ff;
+        padding: 14px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        color: #4338ca;
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+    .turmas-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 18px;
+    }
+
+    .card {
+        background: #fff;
+        padding: 16px;
+        border-radius: 12px;
+        box-shadow: 0 8px 18px rgba(0,0,0,0.05);
+    }
+
+    .card h3 {
+        margin-top: 0;
+        margin-bottom: 8px;
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    .card p {
+        font-size: 14px;
+        color: #4b5563;
+        margin: 4px 0;
+    }
+
+    .btn-primary {
+        width: 100%;
+        margin-top: 12px;
+        padding: 8px;
+        border: none;
+        border-radius: 8px;
+        background: linear-gradient(135deg, #6d28ff, #9333ea);
+        color: #fff;
+        font-size: 14px;
+        cursor: pointer;
+        transition: 0.2s ease;
+    }
+
+    .btn-primary:hover {
+        filter: brightness(1.05);
+    }
+</style>
+
+<h1>Turmas do Treinamento</h1>
+
+<div style="margin-bottom: 12px;">
+    <a href="{{ url_for('treinamento.criar_turma', treinamento_id=treinamento.id) }}" class="btn-primary">Criar nova turma</a>
+</div>
+
+<div style="display:flex; gap:8px; margin-bottom:14px;">
+    <a href="{{ url_for('treinamento.criar_turma', treinamento_id=treinamento.id) }}" class="btn-primary">Criar nova turma</a>
+    <a href="{{ url_for('treinamento.listar') }}" class="btn-secondary">Voltar</a>
+</div>
+
+<!-- CAIXA DE INFORMAÇÕES DO TREINAMENTO -->
+<div class="info-box">
+    <strong>Treinamento:</strong> {{ treinamento.nome }}<br>
+
+    <strong>Vigência:</strong>
+    {% if treinamento.data_inicio %}
+        {{ treinamento.data_inicio.strftime('%d/%m/%Y') }}
+    {% else %}
+        Não definida
+    {% endif %}
+    até
+    {% if treinamento.data_fim %}
+        {{ treinamento.data_fim.strftime('%d/%m/%Y') }}
+    {% else %}
+        Não definida
+    {% endif %}
+</div>
+
+<!-- GRID DE TURMAS -->
+<div class="turmas-grid">
+
+    {% for turma in turmas %}
+    <div class="card">
+
+        <h3>Turma {{ turma.id }}</h3>
+
+        <p>
+            <strong>Início:</strong>
+            {% if turma.data_inicio %}
+                {{ turma.data_inicio.strftime('%d/%m/%Y') }}
+            {% else %}
+                Não definido
+            {% endif %}
+        </p>
+
+        <p><strong>{{ turma.matriculados }}</strong> / {{ turma.vagas }} alunos</p>
+
+        <!-- BOTÃO GERENCIAR ALUNOS -->
+        <a href="{{ url_for('treinamento.vincular', turma_id=turma.id) }}">
+            <button class="btn-primary">Gerenciar alunos</button>
+        </a>
+
+    </div>
+    {% endfor %}
+
+</div>
+
+{% endblock %}

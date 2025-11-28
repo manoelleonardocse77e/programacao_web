@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Nova Turma{% endblock %}
+
+{% block content %}
+<h1>Criar nova Turma</h1>
+
+<form method="post">
+    <label for="vagas">Vagas</label>
+    <input type="number" id="vagas" name="vagas" min="1" required>
+
+    <label for="data_inicio">Data de Início (AAAA-MM-DD)</label>
+    <input type="date" id="data_inicio" name="data_inicio">
+
+    <button type="submit" class="btn-primary">Criar Turma</button>
+    <a href="{{ url_for('treinamento.listar_turmas', treinamento_id=treinamento.id) }}" class="btn-secondary">Voltar</a>
+</form>
+
+{% endblock %}

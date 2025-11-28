@@ -3,7 +3,7 @@ from extensions import db, login_manager
 from models.user import User
 from routes.auth import auth_bp
 from routes.users import users_bp
-from routes.treinamento import treinamento_bp
+from routes.treinamento_rotas import treinamento_bp
 
 app = Flask(__name__)
 app.config.from_object("config.Config")

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Dashboard - Coordenador{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='dash.css') }}">
+<h1 style="margin-bottom: 18px;">Treinamentos</h1>
+
+<p style="color:#6b7280; margin-bottom:20px;">
+    Bem-vindo <strong>{{ current_user.nome }}</strong> — selecione um treinamento para gerenciar suas turmas.
+</p>
+
+<hr style="margin-bottom:20px; opacity:0.3;">
+
+<div class="cards-grid">
+
+    {% for treinamento in treinamentos %}
+        <article class="card">
+            <div class="card-title">{{ treinamento.nome }}</div>
+            <p class="card-desc">{{ treinamento.descricao[:120] }}...</p>
+
+            <div class="card-meta">
+                <span>📅 {{ treinamento.data_inicio.strftime('%d/%m/%Y') if treinamento.data_inicio else 'Não definida' }}</span>
+            </div>
+
+            <a href="{{ url_for('treinamento.listar_turmas', treinamento_id=treinamento.id) }}">
+                <button class="btn-primary" style="width:100%;">Gerenciar turmas</button>
+            </a>
+        </article>
+    {% endfor %}
+</div>
+
+{% endblock %}
